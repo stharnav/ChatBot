@@ -18,6 +18,8 @@ function sendMessage(){
 function calculateMessageType(message){
     if(message.includes("hello") || message.includes("hi")){
         displayResponse("Hello! How can I assist you today?", "bot");
+    }else if(message.includes("love") && message.includes("you")){
+        displayResponse("I love you too", "bot");
     }else if(message.includes("how") && message.includes("you")){
         displayResponse("I'm great, How can I help you!", "bot");
     }else if(message.includes("what") && message.includes("do") && message.includes("you") && message.includes("do")){
