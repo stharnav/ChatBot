@@ -20,6 +20,10 @@ function calculateMessageType(message){
         displayResponse("Hello! How can I assist you today?", "bot");
     }else if(message.includes("how") && message.includes("you")){
         displayResponse("I'm great, How can I help you!", "bot");
+    }else if(message.includes("what") && message.includes("do") && message.includes("you") && message.includes("do")){
+        displayResponse("I'm here to assist you with various tasks, tell jokes, give you inspirational quotes, and provide fun information. How can I help you today?", "bot");
+    }else if(message.includes("who") || message.includes("your") || message.includes("you") || message.includes("name")){
+        displayResponse("I'm your friendly chatbot! You can call me AskJPT.", "bot");
     }else if(message.includes("help") || message.includes("support")){
         displayResponse("Sure! What do you need help with?", "bot");
     } else if(message.includes("bye") || message.includes("goodbye")){
@@ -28,8 +32,16 @@ function calculateMessageType(message){
         displayResponse("You're welcome! If you have any more questions, feel free to ask.", "bot");
     }else if(message.includes("quote") || message.includes("saying") || message.includes("inspire") || message.includes("motivate") || message.includes("inspiration")){
         getQuote();
-    } else if(message.includes("joke") || message.includes("funny")){
+    } else if(message.includes("intereating") || message.includes("fun fact") || message.includes("did you know") || message.includes("fact")){
+        getFact();
+    }else if(message.includes("joke") || message.includes("fun") || message.includes("laugh") || message.includes("humor") || message.includes("comedy") || message.includes("entertain")){
         getJoke();
+    }else if(message.includes("time") || message.includes("clock") || message.includes("current time")){
+        let currentTime = new Date().toLocaleTimeString();
+        displayResponse("The current time is: " + currentTime, "bot");  
+    } else if(message.includes("date") || message.includes("today's date") || message.includes("current date")){        
+        let currentDate = new Date().toLocaleDateString();
+        displayResponse("Today's date is: " + currentDate, "bot");
     } else if(message.includes("weather")){
         getWeatherData();
     } else if(message.includes("news")){
@@ -41,6 +53,10 @@ function calculateMessageType(message){
 
 
 function displayResponse(message, response) {
+
+    if(document.getElementById("intro").style.display !== "none") {
+        document.getElementById("intro").style.display = "none";
+    }
     let chatBox = document.getElementById("message-container");
     let div = document.createElement("div");
     let messageDiv = document.createElement("div");

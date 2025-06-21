@@ -9,6 +9,16 @@
 <body>
     <div class="container">
         <div id="message-container">
+            <div id="intro">
+                <h1>AskJPT</h1>
+                <p>Welcome to AskJPT, your personal non-AI assistant. Ask me anything!</p><br>
+                <div class="list">
+                    <li>Quotes</li>
+                    <li>Jokes</li>
+                    <li>Weather (Currently dead)</li>
+                    <li>Facts</li>
+                </div>
+            </div>
         </div>
         <div class="message-search-bar">
             <input type="text" id="user-input" placeholder="Ask anything ..." onkeypress="if (event.key === 'Enter' || event.keyCode === 13) sendMessage()" />
@@ -19,5 +29,6 @@
     <script src="quote.js" ></script>
     <script src="joke.js"></script>
     <script src="Weather.js"></script>
+    <script src="fact.js"></script>
 </body>
 </html>

@@ -10,7 +10,21 @@ function getQuote() {
 
     const random = Math.floor(Math.random() * starter.length);
 
-     fetch('https://bibhuticoder.github.io/samaya-quotes-api/quotes/metadata.json').then(r => r.json()).then(metadata => {
+    if(Math.random() < 0.5) {
+        fetch('https://api.api-ninjas.com/v1/quotes', {
+            method: 'GET',
+            headers: { 'X-Api-Key': 'TfA6Zev28GZ0gT8GS45ZBw==xV2GvbCfVFqA4Fsz' }
+        })
+        .then(response => response.json())
+        .then(result => {
+            let source = " (Source: api-ninjas.com)";
+            displayResponse(starter[random] + " " +result[0]['quote'] + " -" + result[0]['author'] + source, "bot");
+        })
+        .catch(error => {
+            console.error('Error: ', error);
+        });
+    }else{
+        fetch('https://bibhuticoder.github.io/samaya-quotes-api/quotes/metadata.json').then(r => r.json()).then(metadata => {
             let randomPage = Math.floor(Math.random() * metadata.totalPages) + 1;
             fetch('https://bibhuticoder.github.io/samaya-quotes-api/quotes/' + randomPage + '.json').then(r => r.json()).then(quotesData => {
                 let randomIndex = Math.floor(Math.random() * quotesData.length);
@@ -18,7 +32,11 @@ function getQuote() {
                 if(randomQuote.author === null || randomQuote.author === undefined || randomQuote.author.trim() === "") {
                     randomQuote.author = "";
                 }
-                displayResponse(starter[random] + "\n" + randomQuote.text + "\t - " + randomQuote.author, "bot");
+                let source = " (Source: bibhuticoder.github.io)";
+                displayResponse(starter[random] + "\n" + randomQuote.text + randomQuote.author + source, "bot");
             })
         })
+    }
+
+    
 }
